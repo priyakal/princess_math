@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A personalised princess story math adventure for ages 5 to 7, focused on addition and subtraction."
+    />
+    <title>Princess Poppy's Moonpetal Quest</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage" aria-labelledby="app-title">
+        <div class="backdrop" aria-hidden="true"></div>
+
+        <section id="welcomeScreen" class="welcome-screen" aria-labelledby="welcomeTitle">
+          <div class="welcome-copy">
+            <p class="eyebrow">An enchanted math story</p>
+            <h1 id="welcomeTitle">The Moonpetal Crown</h1>
+            <p class="opening-story">
+              Oh no! The boastful shadow wizard Lord Fumble has scattered the eight jewels from
+              Princess Poppy's magical crown. He thinks no one can solve his number clues before
+              the Starlight Ball begins at moonrise. Poppy needs a brave counting companion to
+              prove him wrong and bring every jewel home.
+            </p>
+            <div class="name-form">
+              <label for="playerName">What is your name, royal helper?</label>
+              <div class="name-row">
+                <input
+                  id="playerName"
+                  name="playerName"
+                  type="text"
+                  maxlength="18"
+                  autocomplete="given-name"
+                  placeholder="Type your name"
+                />
+                <button id="startButton" class="start-button" type="button">
+                  Begin the adventure
+                </button>
+              </div>
+              <p id="nameHint" class="name-hint" aria-live="polite">
+                Princess Poppy is waiting for you by the castle gate.
+              </p>
+            </div>
+          </div>
+          <div class="welcome-princess" aria-hidden="true">
+            <div class="princess princess-large">
+              <span class="crown"></span>
+              <span class="hair"></span>
+              <span class="face">
+                <span class="princess-eyebrow princess-eyebrow-left"></span>
+                <span class="princess-eyebrow princess-eyebrow-right"></span>
+                <span class="princess-eye princess-eye-left"></span>
+                <span class="princess-eye princess-eye-right"></span>
+                <span class="princess-nose"></span>
+                <span class="princess-cheek princess-cheek-left"></span>
+                <span class="princess-cheek princess-cheek-right"></span>
+                <span class="princess-mouth"></span>
+              </span>
+              <span class="dress"></span>
+              <span class="wand"></span>
+            </div>
+          </div>
+        </section>
+
+        <div id="gameScreen" class="game-screen" hidden>
+          <header class="topbar">
+            <div>
+              <p class="eyebrow">The Moonpetal Crown</p>
+              <h1 id="app-title"><span id="playerGreeting">Your</span> royal adventure</h1>
+            </div>
+            <div class="header-tools">
+              <button
+                id="musicButton"
+                class="icon-button"
+                type="button"
+                aria-label="Mute music"
+                aria-pressed="true"
+                title="Mute music"
+              >
+                <span id="musicIcon" aria-hidden="true">♫</span>
+              </button>
+              <div class="score-pill" aria-live="polite">
+                <span class="score-icon" aria-hidden="true">♦</span>
+                <span id="scoreText">0 jewels</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="content-grid">
+            <aside class="story-panel" aria-label="Story chapter">
+              <div class="chapter-heading">
+                <span id="chapterNumber" class="chapter-number">Chapter 1</span>
+                <h2 id="chapterTitle" tabindex="-1">The Whispering Meadow</h2>
+              </div>
+              <div class="portrait" aria-hidden="true">
+                <div id="villain" class="villain" data-fear="0">
+                  <span class="villain-hat"></span>
+                  <span class="villain-head">
+                    <span class="villain-eye eye-left"></span>
+                    <span class="villain-eye eye-right"></span>
+                    <span class="villain-mouth"></span>
+                  </span>
+                  <span class="villain-cape"></span>
+                  <span class="villain-sweat"></span>
+                </div>
+                <span id="villainSpeech" class="villain-speech">They'll never solve my clues!</span>
+                <div class="princess">
+                  <span class="crown"></span>
+                  <span class="hair"></span>
+                  <span class="face">
+                    <span class="princess-eyebrow princess-eyebrow-left"></span>
+                    <span class="princess-eyebrow princess-eyebrow-right"></span>
+                    <span class="princess-eye princess-eye-left"></span>
+                    <span class="princess-eye princess-eye-right"></span>
+                    <span class="princess-nose"></span>
+                    <span class="princess-cheek princess-cheek-left"></span>
+                    <span class="princess-cheek princess-cheek-right"></span>
+                    <span class="princess-mouth"></span>
+                  </span>
+                  <span class="dress"></span>
+                  <span class="wand"></span>
+                </div>
+                <span id="sceneSymbol" class="scene-symbol">✦</span>
+              </div>
+              <p id="storyText" class="story-text"></p>
+              <div id="villainStatus" class="villain-status" role="status" aria-live="polite">
+                <strong>Lord Fumble</strong>
+                <span id="villainMood">Feeling smug</span>
+                <div class="fear-meter" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="progress-wrap">
+                <span id="progressLabel">1 of 8 jewel trails</span>
+                <div class="progress" aria-label="Quest progress">
+                  <span class="progress-dot active"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                  <span class="progress-dot"></span>
+                </div>
+              </div>
+            </aside>
+
+            <section class="math-panel" aria-label="Math challenge">
+              <div class="settings-row" aria-label="Choose the kind of math">
+                <button class="mode-button active" type="button" data-mode="mixed">Mix</button>
+                <button class="mode-button" type="button" data-mode="add">Add</button>
+                <button class="mode-button" type="button" data-mode="subtract">Subtract</button>
+              </div>
+
+              <div class="question-card">
+                <p class="question-label" id="roundText">Jewel challenge 1 of 8</p>
+                <div class="equation" aria-live="polite">
+                  <span id="leftNumber">3</span>
+                  <span id="operator">+</span>
+                  <span id="rightNumber">2</span>
+                  <span id="equalSign">=</span>
+                  <span id="mysteryMark" class="mystery">?</span>
+                </div>
+                <div id="itemRow" class="item-row" aria-hidden="true"></div>
+              </div>
+
+              <div id="answerGrid" class="answer-grid" aria-label="Answer choices"></div>
+              <p id="feedback" class="feedback" aria-live="assertive"></p>
+
+              <div class="controls">
+                <button id="nextButton" class="primary-button" type="button" disabled>
+                  Follow the trail
+                </button>
+                <button id="restartButton" class="secondary-button" type="button">
+                  Start over
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
